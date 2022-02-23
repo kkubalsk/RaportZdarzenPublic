@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ZdarzeniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LogiUzytkownikow">
+          <Key>
+            <PropertyRef Name="IdLogi" />
+          </Key>
+          <Property Name="IdLogi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Uzytkownik" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Komputer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataCzasLogu" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Obiekty">
+          <Key>
+            <PropertyRef Name="IdObiekt" />
+          </Key>
+          <Property Name="IdObiekt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="200" />
+          <Property Name="CzyZablokowany" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusZdarzenia">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypyZdarzen">
+          <Key>
+            <PropertyRef Name="IdTypZdarzenia" />
+          </Key>
+          <Property Name="IdTypZdarzenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="200" />
+          <Property Name="CzyZablokowany" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="haslo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataDodania" Type="datetime" Nullable="false" />
+          <Property Name="DataKoniec" Type="datetime" Nullable="false" />
+          <Property Name="CzyAdministrator" Type="bit" Nullable="false" />
+          <Property Name="CzyKierownik" Type="bit" Nullable="false" />
+          <Property Name="CzyZablokowany" Type="bit" Nullable="false" />
+          <Property Name="CzyNoweHaslo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zalaczniki">
+          <Key>
+            <PropertyRef Name="IdZalacznik" />
+          </Key>
+          <Property Name="IdZalacznik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Zdarzenie" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ZalacznikFoto" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zdarzenia">
+          <Key>
+            <PropertyRef Name="IdZdarzenia" />
+          </Key>
+          <Property Name="IdZdarzenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NrZdarzenia" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Opis" Type="ntext" />
+          <Property Name="Dzialania" Type="ntext" />
+          <Property Name="Uzytkownik" Type="int" Nullable="false" />
+          <Property Name="Obiekt" Type="int" Nullable="false" />
+          <Property Name="TypZdarz" Type="int" Nullable="false" />
+          <Property Name="DataZdarzenia" Type="datetime" Nullable="false" />
+          <Property Name="UwagiDoZdarzenia" Type="ntext" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Zdarzenia.dbo.ViewObiekty' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewObiekty">
+          <Key>
+            <PropertyRef Name="IdObiekt" />
+            <PropertyRef Name="Nazwa" />
+            <PropertyRef Name="CzyZablokowany" />
+          </Key>
+          <Property Name="IdObiekt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="200" />
+          <Property Name="CzyZablokowany" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Zdarzenia.dbo.ViewZdarzeniaLista' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewZdarzeniaLista">
+          <Key>
+            <PropertyRef Name="IdZdarzenia" />
+            <PropertyRef Name="NrZdarzenia" />
+            <PropertyRef Name="Nazwa" />
+            <PropertyRef Name="Uzytkownik" />
+            <PropertyRef Name="NazwaObiektu" />
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdObiekt" />
+            <PropertyRef Name="DataZdarzenia" />
+            <PropertyRef Name="NazwaStatus" />
+            <PropertyRef Name="NazwaTyp" />
+            <PropertyRef Name="IdTypZdarzenia" />
+            <PropertyRef Name="IdStatus" />
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="IdZdarzenia" Type="int" Nullable="false" />
+          <Property Name="NrZdarzenia" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Uzytkownik" Type="nvarchar" MaxLength="102" Nullable="false" />
+          <Property Name="NazwaObiektu" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdObiekt" Type="int" Nullable="false" />
+          <Property Name="DataZdarzenia" Type="datetime" Nullable="false" />
+          <Property Name="NazwaStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NazwaTyp" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdTypZdarzenia" Type="int" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Zdarzenia.dbo.ViewZdarzenieFull' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewZdarzenieFull">
+          <Key>
+            <PropertyRef Name="IdZdarzenia" />
+            <PropertyRef Name="NrZdarzenia" />
+            <PropertyRef Name="Nazwa" />
+            <PropertyRef Name="Uzytkownik" />
+            <PropertyRef Name="NazwaObiektu" />
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdObiekt" />
+            <PropertyRef Name="DataZdarzenia" />
+            <PropertyRef Name="NazwaStatus" />
+            <PropertyRef Name="NazwaTyp" />
+            <PropertyRef Name="IdTypZdarzenia" />
+            <PropertyRef Name="IdStatus" />
+            <PropertyRef Name="IdUzytkownik" />
+            <PropertyRef Name="OpisStatus" />
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="IdZdarzenia" Type="int" Nullable="false" />
+          <Property Name="NrZdarzenia" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Uzytkownik" Type="nvarchar" MaxLength="102" Nullable="false" />
+          <Property Name="NazwaObiektu" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdObiekt" Type="int" Nullable="false" />
+          <Property Name="DataZdarzenia" Type="datetime" Nullable="false" />
+          <Property Name="NazwaStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NazwaTyp" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdTypZdarzenia" Type="int" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+          <Property Name="OpisObiektu" Type="nvarchar" MaxLength="200" />
+          <Property Name="OpisZdarzenia" Type="ntext" />
+          <Property Name="Dzialania" Type="ntext" />
+          <Property Name="IdUzytkownik" Type="int" Nullable="false" />
+          <Property Name="UwagiDoZdarzenia" Type="ntext" />
+          <Property Name="OpisStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="OpisTyp" Type="nvarchar" MaxLength="200" />
+          <Property Name="login" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_LogiUzytkownikow_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="LogiUzytkownikow" Type="Self.LogiUzytkownikow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogiUzytkownikow">
+              <PropertyRef Name="Uzytkownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zalaczniki_Zdarzenia">
+          <End Role="Zdarzenia" Type="Self.Zdarzenia" Multiplicity="1" />
+          <End Role="Zalaczniki" Type="Self.Zalaczniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zdarzenia">
+              <PropertyRef Name="IdZdarzenia" />
+            </Principal>
+            <Dependent Role="Zalaczniki">
+              <PropertyRef Name="Zdarzenie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zdarzenia_Obiekty">
+          <End Role="Obiekty" Type="Self.Obiekty" Multiplicity="1" />
+          <End Role="Zdarzenia" Type="Self.Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obiekty">
+              <PropertyRef Name="IdObiekt" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="Obiekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zdarzenia_StatusZdarzenia">
+          <End Role="StatusZdarzenia" Type="Self.StatusZdarzenia" Multiplicity="1" />
+          <End Role="Zdarzenia" Type="Self.Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusZdarzenia">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zdarzenia_TypyZdarzen1">
+          <End Role="TypyZdarzen" Type="Self.TypyZdarzen" Multiplicity="1" />
+          <End Role="Zdarzenia" Type="Self.Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypyZdarzen">
+              <PropertyRef Name="IdTypZdarzenia" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="TypZdarz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zdarzenia_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Zdarzenia" Type="Self.Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="Uzytkownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZdarzeniaModelStoreContainer">
+          <EntitySet Name="LogiUzytkownikow" EntityType="Self.LogiUzytkownikow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obiekty" EntityType="Self.Obiekty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusZdarzenia" EntityType="Self.StatusZdarzenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypyZdarzen" EntityType="Self.TypyZdarzen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zalaczniki" EntityType="Self.Zalaczniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zdarzenia" EntityType="Self.Zdarzenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewObiekty" EntityType="Self.ViewObiekty" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewObiekty].[IdObiekt] AS [IdObiekt], 
+    [ViewObiekty].[Nazwa] AS [Nazwa], 
+    [ViewObiekty].[Opis] AS [Opis], 
+    [ViewObiekty].[CzyZablokowany] AS [CzyZablokowany]
+    FROM [dbo].[ViewObiekty] AS [ViewObiekty]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewZdarzeniaLista" EntityType="Self.ViewZdarzeniaLista" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewZdarzeniaLista].[IdZdarzenia] AS [IdZdarzenia], 
+    [ViewZdarzeniaLista].[NrZdarzenia] AS [NrZdarzenia], 
+    [ViewZdarzeniaLista].[Nazwa] AS [Nazwa], 
+    [ViewZdarzeniaLista].[Uzytkownik] AS [Uzytkownik], 
+    [ViewZdarzeniaLista].[NazwaObiektu] AS [NazwaObiektu], 
+    [ViewZdarzeniaLista].[IdUser] AS [IdUser], 
+    [ViewZdarzeniaLista].[IdObiekt] AS [IdObiekt], 
+    [ViewZdarzeniaLista].[DataZdarzenia] AS [DataZdarzenia], 
+    [ViewZdarzeniaLista].[NazwaStatus] AS [NazwaStatus], 
+    [ViewZdarzeniaLista].[NazwaTyp] AS [NazwaTyp], 
+    [ViewZdarzeniaLista].[IdTypZdarzenia] AS [IdTypZdarzenia], 
+    [ViewZdarzeniaLista].[IdStatus] AS [IdStatus], 
+    [ViewZdarzeniaLista].[login] AS [login]
+    FROM [dbo].[ViewZdarzeniaLista] AS [ViewZdarzeniaLista]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewZdarzenieFull" EntityType="Self.ViewZdarzenieFull" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewZdarzenieFull].[IdZdarzenia] AS [IdZdarzenia], 
+    [ViewZdarzenieFull].[NrZdarzenia] AS [NrZdarzenia], 
+    [ViewZdarzenieFull].[Nazwa] AS [Nazwa], 
+    [ViewZdarzenieFull].[Uzytkownik] AS [Uzytkownik], 
+    [ViewZdarzenieFull].[NazwaObiektu] AS [NazwaObiektu], 
+    [ViewZdarzenieFull].[IdUser] AS [IdUser], 
+    [ViewZdarzenieFull].[IdObiekt] AS [IdObiekt], 
+    [ViewZdarzenieFull].[DataZdarzenia] AS [DataZdarzenia], 
+    [ViewZdarzenieFull].[NazwaStatus] AS [NazwaStatus], 
+    [ViewZdarzenieFull].[NazwaTyp] AS [NazwaTyp], 
+    [ViewZdarzenieFull].[IdTypZdarzenia] AS [IdTypZdarzenia], 
+    [ViewZdarzenieFull].[IdStatus] AS [IdStatus], 
+    [ViewZdarzenieFull].[OpisObiektu] AS [OpisObiektu], 
+    [ViewZdarzenieFull].[OpisZdarzenia] AS [OpisZdarzenia], 
+    [ViewZdarzenieFull].[Dzialania] AS [Dzialania], 
+    [ViewZdarzenieFull].[IdUzytkownik] AS [IdUzytkownik], 
+    [ViewZdarzenieFull].[UwagiDoZdarzenia] AS [UwagiDoZdarzenia], 
+    [ViewZdarzenieFull].[OpisStatus] AS [OpisStatus], 
+    [ViewZdarzenieFull].[OpisTyp] AS [OpisTyp], 
+    [ViewZdarzenieFull].[login] AS [login]
+    FROM [dbo].[ViewZdarzenieFull] AS [ViewZdarzenieFull]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_LogiUzytkownikow_Users" Association="Self.FK_LogiUzytkownikow_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LogiUzytkownikow" EntitySet="LogiUzytkownikow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zalaczniki_Zdarzenia" Association="Self.FK_Zalaczniki_Zdarzenia">
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+            <End Role="Zalaczniki" EntitySet="Zalaczniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zdarzenia_Obiekty" Association="Self.FK_Zdarzenia_Obiekty">
+            <End Role="Obiekty" EntitySet="Obiekty" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zdarzenia_StatusZdarzenia" Association="Self.FK_Zdarzenia_StatusZdarzenia">
+            <End Role="StatusZdarzenia" EntitySet="StatusZdarzenia" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zdarzenia_TypyZdarzen1" Association="Self.FK_Zdarzenia_TypyZdarzen1">
+            <End Role="TypyZdarzen" EntitySet="TypyZdarzen" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zdarzenia_Users" Association="Self.FK_Zdarzenia_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZdarzeniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="haslo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataDodania" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataKoniec" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CzyAdministrator" Type="Boolean" Nullable="false" />
+          <Property Name="CzyKierownik" Type="Boolean" Nullable="false" />
+          <Property Name="CzyZablokowany" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zdarzenia" Relationship="ZdarzeniaModel.FK_Zdarzenia_Users" FromRole="Users" ToRole="Zdarzenia" />
+          <NavigationProperty Name="LogiUzytkownikow" Relationship="ZdarzeniaModel.FK_LogiUzytkownikow_Users" FromRole="Users" ToRole="LogiUzytkownikow" />
+          <Property Name="CzyNoweHaslo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ZdarzeniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Obiekty" EntityType="ZdarzeniaModel.Obiekty" />
+          <EntitySet Name="TypyZdarzen" EntityType="ZdarzeniaModel.TypyZdarzen" />
+          <EntitySet Name="Zdarzenia" EntityType="ZdarzeniaModel.Zdarzenia" />
+          <AssociationSet Name="FK_Zdarzenia_Obiekty" Association="ZdarzeniaModel.FK_Zdarzenia_Obiekty">
+            <End Role="Obiekty" EntitySet="Obiekty" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zdarzenia_Users" Association="ZdarzeniaModel.FK_Zdarzenia_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+          <EntitySet Name="ViewObiekty" EntityType="ZdarzeniaModel.ViewObiekty" />
+          <AssociationSet Name="FK_Zdarzenia_TypyZdarzen1" Association="ZdarzeniaModel.FK_Zdarzenia_TypyZdarzen1">
+            <End Role="TypyZdarzen" EntitySet="TypyZdarzen" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+          <EntitySet Name="Zalaczniki" EntityType="ZdarzeniaModel.Zalaczniki" />
+          <AssociationSet Name="FK_Zalaczniki_Zdarzenia" Association="ZdarzeniaModel.FK_Zalaczniki_Zdarzenia">
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+            <End Role="Zalaczniki" EntitySet="Zalaczniki" />
+          </AssociationSet>
+          <EntitySet Name="LogiUzytkownikow" EntityType="ZdarzeniaModel.LogiUzytkownikow" />
+          <AssociationSet Name="FK_LogiUzytkownikow_Users" Association="ZdarzeniaModel.FK_LogiUzytkownikow_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LogiUzytkownikow" EntitySet="LogiUzytkownikow" />
+          </AssociationSet>
+          <EntitySet Name="StatusZdarzenia" EntityType="ZdarzeniaModel.StatusZdarzenia" />
+          <AssociationSet Name="FK_Zdarzenia_StatusZdarzenia" Association="ZdarzeniaModel.FK_Zdarzenia_StatusZdarzenia">
+            <End Role="StatusZdarzenia" EntitySet="StatusZdarzenia" />
+            <End Role="Zdarzenia" EntitySet="Zdarzenia" />
+          </AssociationSet>
+          <EntitySet Name="ViewZdarzenieFull" EntityType="ZdarzeniaModel.ViewZdarzenieFull" />
+          <EntitySet Name="ViewZdarzeniaLista" EntityType="ZdarzeniaModel.ViewZdarzeniaLista" />
+          </EntityContainer>
+        <EntityType Name="Obiekty">
+          <Key>
+            <PropertyRef Name="IdObiekt" />
+          </Key>
+          <Property Name="IdObiekt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CzyZablokowany" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zdarzenia" Relationship="ZdarzeniaModel.FK_Zdarzenia_Obiekty" FromRole="Obiekty" ToRole="Zdarzenia" />
+        </EntityType>
+        <EntityType Name="TypyZdarzen">
+          <Key>
+            <PropertyRef Name="IdTypZdarzenia" />
+          </Key>
+          <Property Name="IdTypZdarzenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CzyZablokowany" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zdarzenia" Relationship="ZdarzeniaModel.FK_Zdarzenia_TypyZdarzen1" FromRole="TypyZdarzen" ToRole="Zdarzenia" />
+        </EntityType>
+        <EntityType Name="Zdarzenia">
+          <Key>
+            <PropertyRef Name="IdZdarzenia" />
+          </Key>
+          <Property Name="IdZdarzenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NrZdarzenia" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dzialania" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Uzytkownik" Type="Int32" Nullable="false" />
+          <Property Name="Obiekt" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Obiekty" Relationship="ZdarzeniaModel.FK_Zdarzenia_Obiekty" FromRole="Zdarzenia" ToRole="Obiekty" />
+          <NavigationProperty Name="Users" Relationship="ZdarzeniaModel.FK_Zdarzenia_Users" FromRole="Zdarzenia" ToRole="Users" />
+          <Property Name="TypZdarz" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TypyZdarzen" Relationship="ZdarzeniaModel.FK_Zdarzenia_TypyZdarzen1" FromRole="Zdarzenia" ToRole="TypyZdarzen" />
+          <NavigationProperty Name="Zalaczniki" Relationship="ZdarzeniaModel.FK_Zalaczniki_Zdarzenia" FromRole="Zdarzenia" ToRole="Zalaczniki" />
+          <Property Name="DataZdarzenia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UwagiDoZdarzenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StatusZdarzenia" Relationship="ZdarzeniaModel.FK_Zdarzenia_StatusZdarzenia" FromRole="Zdarzenia" ToRole="StatusZdarzenia" />
+        </EntityType>
+        <Association Name="FK_Zdarzenia_Obiekty">
+          <End Type="ZdarzeniaModel.Obiekty" Role="Obiekty" Multiplicity="1" />
+          <End Type="ZdarzeniaModel.Zdarzenia" Role="Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obiekty">
+              <PropertyRef Name="IdObiekt" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="Obiekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zdarzenia_Users">
+          <End Type="ZdarzeniaModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="ZdarzeniaModel.Zdarzenia" Role="Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="Uzytkownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ViewObiekty">
+          <Key>
+            <PropertyRef Name="IdObiekt" />
+            <PropertyRef Name="Nazwa" />
+            <PropertyRef Name="CzyZablokowany" />
+          </Key>
+          <Property Name="IdObiekt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CzyZablokowany" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Zdarzenia_TypyZdarzen1">
+          <End Type="ZdarzeniaModel.TypyZdarzen" Role="TypyZdarzen" Multiplicity="1" />
+          <End Type="ZdarzeniaModel.Zdarzenia" Role="Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypyZdarzen">
+              <PropertyRef Name="IdTypZdarzenia" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="TypZdarz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Zalaczniki">
+          <Key>
+            <PropertyRef Name="IdZalacznik" />
+          </Key>
+          <Property Name="IdZalacznik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Zdarzenie" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ZalacznikFoto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Zdarzenia" Relationship="ZdarzeniaModel.FK_Zalaczniki_Zdarzenia" FromRole="Zalaczniki" ToRole="Zdarzenia" />
+        </EntityType>
+        <Association Name="FK_Zalaczniki_Zdarzenia">
+          <End Type="ZdarzeniaModel.Zdarzenia" Role="Zdarzenia" Multiplicity="1" />
+          <End Type="ZdarzeniaModel.Zalaczniki" Role="Zalaczniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zdarzenia">
+              <PropertyRef Name="IdZdarzenia" />
+            </Principal>
+            <Dependent Role="Zalaczniki">
+              <PropertyRef Name="Zdarzenie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LogiUzytkownikow">
+          <Key>
+            <PropertyRef Name="IdLogi" />
+          </Key>
+          <Property Name="IdLogi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Uzytkownik" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Komputer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataCzasLogu" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="ZdarzeniaModel.FK_LogiUzytkownikow_Users" FromRole="LogiUzytkownikow" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_LogiUzytkownikow_Users">
+          <End Type="ZdarzeniaModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="ZdarzeniaModel.LogiUzytkownikow" Role="LogiUzytkownikow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogiUzytkownikow">
+              <PropertyRef Name="Uzytkownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StatusZdarzenia">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zdarzenia" Relationship="ZdarzeniaModel.FK_Zdarzenia_StatusZdarzenia" FromRole="StatusZdarzenia" ToRole="Zdarzenia" />
+        </EntityType>
+        <Association Name="FK_Zdarzenia_StatusZdarzenia">
+          <End Type="ZdarzeniaModel.StatusZdarzenia" Role="StatusZdarzenia" Multiplicity="1" />
+          <End Type="ZdarzeniaModel.Zdarzenia" Role="Zdarzenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusZdarzenia">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Zdarzenia">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ViewZdarzenieFull">
+          <Key>
+            <PropertyRef Name="IdZdarzenia" />
+            <PropertyRef Name="NrZdarzenia" />
+            <PropertyRef Name="Nazwa" />
+            <PropertyRef Name="Uzytkownik" />
+            <PropertyRef Name="NazwaObiektu" />
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdObiekt" />
+            <PropertyRef Name="DataZdarzenia" />
+            <PropertyRef Name="NazwaStatus" />
+            <PropertyRef Name="NazwaTyp" />
+            <PropertyRef Name="IdTypZdarzenia" />
+            <PropertyRef Name="IdStatus" />
+            <PropertyRef Name="IdUzytkownik" />
+            <PropertyRef Name="OpisStatus" />
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="IdZdarzenia" Type="Int32" Nullable="false" />
+          <Property Name="NrZdarzenia" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Uzytkownik" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="true" />
+          <Property Name="NazwaObiektu" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdObiekt" Type="Int32" Nullable="false" />
+          <Property Name="DataZdarzenia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NazwaStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NazwaTyp" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="IdTypZdarzenia" Type="Int32" Nullable="false" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <Property Name="OpisObiektu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OpisZdarzenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dzialania" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdUzytkownik" Type="Int32" Nullable="false" />
+          <Property Name="UwagiDoZdarzenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpisStatus" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="OpisTyp" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewZdarzeniaLista">
+          <Key>
+            <PropertyRef Name="IdZdarzenia" />
+            <PropertyRef Name="NrZdarzenia" />
+            <PropertyRef Name="Nazwa" />
+            <PropertyRef Name="Uzytkownik" />
+            <PropertyRef Name="NazwaObiektu" />
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdObiekt" />
+            <PropertyRef Name="DataZdarzenia" />
+            <PropertyRef Name="NazwaStatus" />
+            <PropertyRef Name="NazwaTyp" />
+            <PropertyRef Name="IdTypZdarzenia" />
+            <PropertyRef Name="IdStatus" />
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="IdZdarzenia" Type="Int32" Nullable="false" />
+          <Property Name="NrZdarzenia" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Uzytkownik" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="true" />
+          <Property Name="NazwaObiektu" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdObiekt" Type="Int32" Nullable="false" />
+          <Property Name="DataZdarzenia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NazwaStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NazwaTyp" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="IdTypZdarzenia" Type="Int32" Nullable="false" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZdarzeniaModelStoreContainer" CdmEntityContainer="ZdarzeniaEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CzyNoweHaslo" ColumnName="CzyNoweHaslo" />
+                <ScalarProperty Name="CzyZablokowany" ColumnName="CzyZablokowany" />
+                <ScalarProperty Name="CzyKierownik" ColumnName="CzyKierownik" />
+                <ScalarProperty Name="CzyAdministrator" ColumnName="CzyAdministrator" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="haslo" ColumnName="haslo" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="DataDodania" ColumnName="DataDodania" />
+                <ScalarProperty Name="DataKoniec" ColumnName="DataKoniec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Obiekty">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.Obiekty">
+              <MappingFragment StoreEntitySet="Obiekty">
+                <ScalarProperty Name="CzyZablokowany" ColumnName="CzyZablokowany" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="IdObiekt" ColumnName="IdObiekt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypyZdarzen">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.TypyZdarzen">
+              <MappingFragment StoreEntitySet="TypyZdarzen">
+                <ScalarProperty Name="CzyZablokowany" ColumnName="CzyZablokowany" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="IdTypZdarzenia" ColumnName="IdTypZdarzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zdarzenia">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.Zdarzenia">
+              <MappingFragment StoreEntitySet="Zdarzenia">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UwagiDoZdarzenia" ColumnName="UwagiDoZdarzenia" />
+                <ScalarProperty Name="DataZdarzenia" ColumnName="DataZdarzenia" />
+                <ScalarProperty Name="TypZdarz" ColumnName="TypZdarz" />
+                <ScalarProperty Name="Obiekt" ColumnName="Obiekt" />
+                <ScalarProperty Name="Uzytkownik" ColumnName="Uzytkownik" />
+                <ScalarProperty Name="Dzialania" ColumnName="Dzialania" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="NrZdarzenia" ColumnName="NrZdarzenia" />
+                <ScalarProperty Name="IdZdarzenia" ColumnName="IdZdarzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewObiekty">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.ViewObiekty">
+              <MappingFragment StoreEntitySet="ViewObiekty">
+                <ScalarProperty Name="CzyZablokowany" ColumnName="CzyZablokowany" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="IdObiekt" ColumnName="IdObiekt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zalaczniki">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.Zalaczniki">
+              <MappingFragment StoreEntitySet="Zalaczniki">
+                <ScalarProperty Name="ZalacznikFoto" ColumnName="ZalacznikFoto" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Zdarzenie" ColumnName="Zdarzenie" />
+                <ScalarProperty Name="IdZalacznik" ColumnName="IdZalacznik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogiUzytkownikow">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.LogiUzytkownikow">
+              <MappingFragment StoreEntitySet="LogiUzytkownikow">
+                <ScalarProperty Name="DataCzasLogu" ColumnName="DataCzasLogu" />
+                <ScalarProperty Name="Komputer" ColumnName="Komputer" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Uzytkownik" ColumnName="Uzytkownik" />
+                <ScalarProperty Name="IdLogi" ColumnName="IdLogi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusZdarzenia">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.StatusZdarzenia">
+              <MappingFragment StoreEntitySet="StatusZdarzenia">
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewZdarzenieFull">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.ViewZdarzenieFull">
+              <MappingFragment StoreEntitySet="ViewZdarzenieFull">
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="OpisTyp" ColumnName="OpisTyp" />
+                <ScalarProperty Name="OpisStatus" ColumnName="OpisStatus" />
+                <ScalarProperty Name="UwagiDoZdarzenia" ColumnName="UwagiDoZdarzenia" />
+                <ScalarProperty Name="IdUzytkownik" ColumnName="IdUzytkownik" />
+                <ScalarProperty Name="Dzialania" ColumnName="Dzialania" />
+                <ScalarProperty Name="OpisZdarzenia" ColumnName="OpisZdarzenia" />
+                <ScalarProperty Name="OpisObiektu" ColumnName="OpisObiektu" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="IdTypZdarzenia" ColumnName="IdTypZdarzenia" />
+                <ScalarProperty Name="NazwaTyp" ColumnName="NazwaTyp" />
+                <ScalarProperty Name="NazwaStatus" ColumnName="NazwaStatus" />
+                <ScalarProperty Name="DataZdarzenia" ColumnName="DataZdarzenia" />
+                <ScalarProperty Name="IdObiekt" ColumnName="IdObiekt" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="NazwaObiektu" ColumnName="NazwaObiektu" />
+                <ScalarProperty Name="Uzytkownik" ColumnName="Uzytkownik" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="NrZdarzenia" ColumnName="NrZdarzenia" />
+                <ScalarProperty Name="IdZdarzenia" ColumnName="IdZdarzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewZdarzeniaLista">
+            <EntityTypeMapping TypeName="ZdarzeniaModel.ViewZdarzeniaLista">
+              <MappingFragment StoreEntitySet="ViewZdarzeniaLista">
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="IdTypZdarzenia" ColumnName="IdTypZdarzenia" />
+                <ScalarProperty Name="NazwaTyp" ColumnName="NazwaTyp" />
+                <ScalarProperty Name="NazwaStatus" ColumnName="NazwaStatus" />
+                <ScalarProperty Name="DataZdarzenia" ColumnName="DataZdarzenia" />
+                <ScalarProperty Name="IdObiekt" ColumnName="IdObiekt" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="NazwaObiektu" ColumnName="NazwaObiektu" />
+                <ScalarProperty Name="Uzytkownik" ColumnName="Uzytkownik" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="NrZdarzenia" ColumnName="NrZdarzenia" />
+                <ScalarProperty Name="IdZdarzenia" ColumnName="IdZdarzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

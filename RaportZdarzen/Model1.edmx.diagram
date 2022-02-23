@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="49146f13884946bd9b60e22928ccefaf" Name="Diagram1">
+        <EntityTypeShape EntityType="ZdarzeniaModel.Users" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.TypyZdarzen" Width="1.5" PointX="6.125" PointY="4" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.Obiekty" Width="1.5" PointX="0.5" PointY="4.25" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.Zdarzenia" Width="1.5" PointX="4.125" PointY="2.25" />
+        <AssociationConnector Association="ZdarzeniaModel.FK_Zdarzenia_Obiekty" />
+        <AssociationConnector Association="ZdarzeniaModel.FK_Zdarzenia_Users" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.ViewObiekty" Width="1.5" PointX="13.125" PointY="1.125" />
+        <AssociationConnector Association="ZdarzeniaModel.FK_Zdarzenia_TypyZdarzen1" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.Zalaczniki" Width="1.5" PointX="6.125" PointY="0.625" />
+        <AssociationConnector Association="ZdarzeniaModel.FK_Zalaczniki_Zdarzenia" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.LogiUzytkownikow" Width="1.5" PointX="2.5" PointY="0.625" />
+        <AssociationConnector Association="ZdarzeniaModel.FK_LogiUzytkownikow_Users" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.ViewZdarzenieFull" Width="1.5" PointX="11.375" PointY="1.125" />
+        <EntityTypeShape EntityType="ZdarzeniaModel.ViewZdarzeniaLista" Width="1.5" PointX="9.625" PointY="1.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

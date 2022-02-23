@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RaportZdarzen.FrmMain" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="7" />
+    <TypeIdentifier>
+      <HashCode>IUQAAQAIAKVHAoIiBBCAAABLBKAAIGQAAEQAQQBAIAE=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmAddZdarzenie" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAQAALRACKgwGFTAAATAQAwCAAgiAEACADAgAAREAgI=</HashCode>
+      <FileName>FrmAddZdarzenie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.frmEdytujZdarzenie" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAYAArJACKgQOFDAgASARAgCACgiAEAiAHCgAERFAkI=</HashCode>
+      <FileName>frmEdytujZdarzenie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmLogowanie" Collapsed="true">
+    <Position X="3" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAIKAQABAAABCAAAACAAAQAAAAAEAAAAAgAAA=</HashCode>
+      <FileName>FrmLogowanie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmObiekty" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAJBACAQAFQABQSAQAgCACBAAAACAEAoAABAAhA=</HashCode>
+      <FileName>FrmObiekty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmPokazZdarzenie" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>MAAACFBCAKgAGFBAwACABAACECAAAAAiACAgAARFAQA=</HashCode>
+      <FileName>FrmPokazZdarzenie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmRaporty" Collapsed="true">
+    <Position X="5.75" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgQAwASiAACFiAwASICgACAiiAgAAAAGSgAABFABA=</HashCode>
+      <FileName>FrmRaporty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmTypyZdarzen" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SgQACABBACAQAFAABACAAAgCAABAEAACAEAgIABAAgA=</HashCode>
+      <FileName>FrmTypyZdarzen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmWybierzZdarzenie" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AwACIAABCiAAAFiQ4ACACAACQiJAABgAAAQgAABBAAA=</HashCode>
+      <FileName>FrmWybierzZdarzenie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.FrmZmienHaslo" Collapsed="true">
+    <Position X="3" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAKQQABAAgACAAAgCAAAAAAAAAEAAAAgAAgA=</HashCode>
+      <FileName>FrmZmienHaslo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Konfigurator" Collapsed="true">
+    <Position X="0.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAFAAgAAAAAiCAgAAAAAJAABCAAAAAAAACAAACAEAA=</HashCode>
+      <FileName>Konfigurator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.ZdarzeniaEntities" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAChAAAAAAAAAABAAAAAQEAAAAAAgAEAAiAAAAAA=</HashCode>
+      <FileName>Model1.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.LogiUzytkownikow" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAARAAAAAAAAAAAIAAQAAAAAAIAAAA=</HashCode>
+      <FileName>LogiUzytkownikow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Obiekty" Collapsed="true">
+    <Position X="8.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAAAAAAAEAAgAAAgAAAAAAA=</HashCode>
+      <FileName>Obiekty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.StatusZdarzenia" Collapsed="true">
+    <Position X="13.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAABAgAAAgAAAAAAA=</HashCode>
+      <FileName>StatusZdarzenia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.TypyZdarzen" Collapsed="true">
+    <Position X="8.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAABAAAAAAAAAAAEAAgAAAgAAAAAAA=</HashCode>
+      <FileName>TypyZdarzen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Users" Collapsed="true">
+    <Position X="8.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACgAAAgIAAIABAAAAAAAAIAAAAEAAgAAAACAAAEAE=</HashCode>
+      <FileName>Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.ViewObiekty" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAAAAAAAEAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ViewObiekty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.ViewZdarzeniaLista" Collapsed="true">
+    <Position X="12.25" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAADAABACgAAAAgAQAAAAAAAAAAAgBAAAAQgAAAAEAA=</HashCode>
+      <FileName>ViewZdarzeniaLista.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.ViewZdarzenieFull" Collapsed="true">
+    <Position X="12.25" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QEADAABADgAAAAgAQAAAAAAAAQAAgBAAAATgCAAAEAg=</HashCode>
+      <FileName>ViewZdarzenieFull.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Zalaczniki" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgACAgAAQAAAA=</HashCode>
+      <FileName>Zalaczniki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Zdarzenia" Collapsed="true">
+    <Position X="8.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIChEJgAAAAAARAAAAAAAAQAAgAAAAEQggAAAAAA=</HashCode>
+      <FileName>Zdarzenia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Ochrona" Collapsed="true">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ochrona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Program" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.ZapiszLog" Collapsed="true">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ZapiszLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.frmZarzadznieUzytkownikami" Collapsed="true">
+    <Position X="3" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AsADQAUgAKEQAFEAARCQAAgaACBAAAoAAEAACAhKEgA=</HashCode>
+      <FileName>ZarzadznieUzytkownikami.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Properties.Resources" Collapsed="true">
+    <Position X="12.25" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RaportZdarzen.Properties.Settings" Collapsed="true">
+    <Position X="12.5" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
